@@ -45,9 +45,11 @@
         <h4>Description</h4>
         <p>{{ member.interests }}</p>
       </tab>
-      <tab heading="Photos">
+      <tab heading="Photos" #photoTab="tab">
+        @if (photoTab.active) {
         <h4>Photos will go here</h4>
-        <p>{{ member.introduction }}</p>
+        <gallery [items]="images" class="gallery"></gallery>
+        }
       </tab>
       <tab heading="Messages">
         <h4>Photos will go here</h4>
