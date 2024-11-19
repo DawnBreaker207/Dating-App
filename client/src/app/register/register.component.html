@@ -61,10 +61,10 @@
     [type]="'password'"
   >
   </app-text-input>
-  @if (ValidatorsErrors) {
+  @if (validationErrors) {
   <div class="alert alert-danger text-start">
     <ul>
-      @for (error of ValidatorsErrors; track $index) {
+      @for (error of validationErrors; track $index) {
       <li>{{ error }}</li>
       }
     </ul>
@@ -82,3 +82,6 @@
     <button class="btn btn-default me-2" (click)="cancel()">Cancel</button>
   </div>
 </form>
+
+<p>Form Value: {{ registerForm.value | json }}</p>
+<p>Form Valid: {{ registerForm.valid | json }}</p>

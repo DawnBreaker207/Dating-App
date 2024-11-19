@@ -11,11 +11,17 @@ import { Router } from '@angular/router';
 import { DatePickerComponent } from '../_forms/date-picker/date-picker.component';
 import { TextInputComponent } from '../_forms/text-input/text-input.component';
 import { AccountService } from '../_services/account.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, TextInputComponent, DatePickerComponent],
+  imports: [
+    ReactiveFormsModule,
+    TextInputComponent,
+    DatePickerComponent,
+    JsonPipe,
+  ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
@@ -26,7 +32,7 @@ export class RegisterComponent implements OnInit {
   cancelRegister = output<boolean>();
   registerForm: FormGroup = new FormGroup({});
   maxDate = new Date();
-  ValidatorsErrors: string[] | undefined;
+  validationErrors: string[] | undefined;
   ngOnInit(): void {
     this.initializeForm();
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
@@ -67,7 +73,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.patchValue({ dateOfBirth: dob });
     this.accountService.register(this.registerForm.value).subscribe({
       next: (_) => this.router.navigateByUrl('/members'),
-      error: (err) => (this.ValidatorsErrors = err),
+      error: (err) => (this.validationErrors = err),
     });
   }
 
