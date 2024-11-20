@@ -43,6 +43,12 @@
   </app-date-picker>
 
   <app-text-input
+    [formControl]="$any(registerForm.controls['city'])"
+    [label]="'City'"
+  >
+  </app-text-input>
+
+  <app-text-input
     [formControl]="$any(registerForm.controls['country'])"
     [label]="'Country'"
   >
@@ -82,6 +88,3 @@
     <button class="btn btn-default me-2" (click)="cancel()">Cancel</button>
   </div>
 </form>
-
-<p>Form Value: {{ registerForm.value | json }}</p>
-<p>Form Valid: {{ registerForm.valid | json }}</p>

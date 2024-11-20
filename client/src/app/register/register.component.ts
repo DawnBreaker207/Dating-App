@@ -1,3 +1,4 @@
+import { JsonPipe, NgFor, NgIf } from '@angular/common';
 import { Component, inject, OnInit, output } from '@angular/core';
 import {
   AbstractControl,
@@ -11,17 +12,11 @@ import { Router } from '@angular/router';
 import { DatePickerComponent } from '../_forms/date-picker/date-picker.component';
 import { TextInputComponent } from '../_forms/text-input/text-input.component';
 import { AccountService } from '../_services/account.service';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    TextInputComponent,
-    DatePickerComponent,
-    JsonPipe,
-  ],
+  imports: [ReactiveFormsModule, TextInputComponent, DatePickerComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
