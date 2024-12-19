@@ -36,7 +36,7 @@ export class MembersService {
     // const member = this.members().find((x) => x.username === username);
     // if (member !== undefined) return of(member);
 
-    return this.http.get<Member>(this.baseUrl + '/user/' + username);
+    return this.http.get<Member>(this.baseUrl + '/users/' + username);
   }
 
   updateMember(member: Member) {
@@ -52,7 +52,7 @@ export class MembersService {
   }
   setMainPhoto(photo: Photo) {
     return this.http
-      .put(this.baseUrl + '/user/set-main-photo/' + photo.id, {})
+      .put(this.baseUrl + '/users/set-main-photo/' + photo.id, {})
       .pipe
       // tap(() => {
       //   this.members.update((members) =>
