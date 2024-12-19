@@ -7,14 +7,17 @@ using server.DTO;
 using System.Security.Claims;
 using server.Extensions;
 using Server.Entities;
+using server.Helpers;
 namespace Server.Controllers;
 [Authorize]
 public class UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService) : BaseAPIController
 {
   [HttpGet]
-  public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+  public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
   {
-    var users = await userRepository.GetMembersAsync();
+    var users = await userRepository.GetMembersAsync(userParams);
+
+    Response.AddPaginationHeader(users);
 
     return Ok(users);
   }

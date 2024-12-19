@@ -2,6 +2,7 @@ using System;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
+using server.Helpers;
 using server.Interfaces;
 using Server.Data;
 using Server.Entities;
@@ -14,13 +15,14 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
   {
     return await context.Users
       .Where(x => x.UserName == username)
-    .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
-    .SingleOrDefaultAsync();
+      .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
+      .SingleOrDefaultAsync();
   }
 
-  public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+  public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
   {
-    return await context.Users.ProjectTo<MemberDto>(mapper.ConfigurationProvider).ToListAsync();
+    var query = context.Users.ProjectTo<MemberDto>(mapper.ConfigurationProvider);
+    return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
   }
 
   public async Task<IEnumerable<AppUser>> GetUserAsync()
