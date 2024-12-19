@@ -20,6 +20,7 @@ public class PhotoService : IPhotoService
   public async Task<ImageUploadResult> AddPhotoAsync(IFormFile file)
   {
     var updateResult = new ImageUploadResult();
+    
     if (file.Length > 0)
     {
       using var stream = file.OpenReadStream();

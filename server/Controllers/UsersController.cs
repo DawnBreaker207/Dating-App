@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Authorization;
 using server.Interfaces;
 using AutoMapper;
 using server.DTO;
-using System.Security.Claims;
 using server.Extensions;
 using Server.Entities;
 using server.Helpers;

@@ -14,7 +14,7 @@ export class MemberListComponent implements OnInit {
   pageNumber = 1;
   pageSize = 5;
   ngOnInit(): void {
-    if (this.memberService.paginatedResult()) this.loadMembers();
+    if (!this.memberService.paginatedResult()) this.loadMembers();
   }
 
   loadMembers() {
