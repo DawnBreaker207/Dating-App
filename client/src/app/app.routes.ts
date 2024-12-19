@@ -24,7 +24,7 @@ export const routes: Routes = [
       },
       { path: 'members/:username', component: MemberDetailComponent },
       {
-        path: 'members/edit',
+        path: 'member/edit',
         component: MemberEditComponent,
         canDeactivate: [preventUnsavedChangesGuard],
       },

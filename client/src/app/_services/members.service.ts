@@ -21,12 +21,12 @@ export class MembersService {
       params = params.append('pageSize', pageSize);
     }
     return this.http
-      .get<Member[]>(this.baseUrl + 'users', { observe: 'response', params })
+      .get<Member[]>(this.baseUrl + '/users', { observe: 'response', params })
       .subscribe({
         next: (response) => {
           this.paginatedResult.set({
             items: response.body as Member[],
-            pagination: JSON.parse(response.headers.get('Pagination')!)
+            pagination: JSON.parse(response.headers.get('Pagination')!),
           });
         },
       });
@@ -36,12 +36,12 @@ export class MembersService {
     // const member = this.members().find((x) => x.username === username);
     // if (member !== undefined) return of(member);
 
-    return this.http.get<Member>(this.baseUrl + '/users' + username);
+    return this.http.get<Member>(this.baseUrl + '/user/' + username);
   }
 
   updateMember(member: Member) {
     return this.http
-      .put(this.baseUrl + 'users', member)
+      .put(this.baseUrl + '/users', member)
       .pipe
       // tap(() => {
       //   this.members.update((members) =>
@@ -52,7 +52,7 @@ export class MembersService {
   }
   setMainPhoto(photo: Photo) {
     return this.http
-      .put(this.baseUrl + 'user/set-main-photo/' + photo.id, {})
+      .put(this.baseUrl + '/user/set-main-photo/' + photo.id, {})
       .pipe
       // tap(() => {
       //   this.members.update((members) =>
@@ -69,7 +69,7 @@ export class MembersService {
 
   deletePhoto(photo: Photo) {
     return this.http
-      .delete(this.baseUrl + 'users/delete-photo/' + photo.id)
+      .delete(this.baseUrl + '/users/delete-photo/' + photo.id)
       .pipe
       // tap(() => {
       //   this.members.update((members) =>
