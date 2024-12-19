@@ -20,7 +20,9 @@ public class Seed
     var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
     var users = JsonSerializer.Deserialize<List<AppUser>>(userData, options);
+
     if (users == null) return;
+    
     foreach (var user in users)
     {
       using var hmac = new HMACSHA512();

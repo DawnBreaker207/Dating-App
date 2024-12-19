@@ -4,7 +4,7 @@
     <div class="card">
       <img
         src="{{ member.photoUrl || './assets/user.png' }}"
-        alt="{{ member.knowAs }}"
+        alt="{{ member.knownAs }}"
         class="card-img img-thumbnail"
       />
       <div class="card-body">
@@ -35,7 +35,7 @@
   </div>
   <div class="col-8">
     <tabset class="member-tabset">
-      <tab heading="Aboout {{ member.knowAs }}">
+      <tab heading="Aboout {{ member.knownAs }}">
         <h4>Description</h4>
         <p>{{ member.introduction }}</p>
         <h4>Looking for</h4>

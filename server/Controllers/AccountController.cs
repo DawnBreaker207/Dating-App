@@ -1,8 +1,6 @@
-using System;
 using System.Security.Cryptography;
 using System.Text;
 using AutoMapper;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using server.DTO;
@@ -34,7 +32,7 @@ public class AccountController(DataContext context, ITokenService tokenService, 
     {
       Username = user.UserName,
       Token = tokenService.CreateToken(user),
-      KnownAs = user.KnowAs
+      KnownAs = user.KnownAs
     };
   }
 
@@ -64,7 +62,7 @@ public class AccountController(DataContext context, ITokenService tokenService, 
     return new UserDto
     {
       Username = user.UserName,
-      KnownAs = user.KnowAs,
+      KnownAs = user.KnownAs,
       Token = tokenService.CreateToken(user),
       PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url
     };
