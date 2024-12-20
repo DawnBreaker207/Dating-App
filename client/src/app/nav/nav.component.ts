@@ -1,10 +1,9 @@
-import { TitleCasePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { AccountService } from '../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
     BsDropdownModule,
     RouterLink,
     RouterLinkActive,
-    TitleCasePipe,
+
   ],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
