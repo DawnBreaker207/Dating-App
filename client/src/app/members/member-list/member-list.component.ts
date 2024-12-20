@@ -22,6 +22,7 @@ export class MemberListComponent implements OnInit {
     { value: 'female', display: 'Females' },
   ];
   ngOnInit(): void {
+    console.log(this.memberService.paginatedResult());
     if (!this.memberService.paginatedResult()) this.loadMembers();
   }
 
