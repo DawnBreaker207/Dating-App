@@ -1,8 +1,7 @@
-using System;
 using Microsoft.AspNetCore.Mvc;
-using server.Data;
 using server.Entities;
 using server.Extensions;
+using server.Helpers;
 using server.Interfaces;
 
 namespace server.Controllers;
@@ -43,9 +42,12 @@ public class LikesController(ILikesRepository likesRepository) : BaseAPIControll
   }
 
   [HttpGet]
-  public async Task<ActionResult<IEnumerable<MemberDto>>> GetUserLikes(string predicate)
+  public async Task<ActionResult<IEnumerable<MemberDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
   {
-    var users = await likesRepository.GetUserLikes(predicate, User.GetUserId());
+    likesParams.UserId = User.GetUserId();
+    var users = await likesRepository.GetUserLikes(likesParams);
+
+    Response.AddPaginationHeader(users);
 
     return Ok(users);
   }

@@ -15,7 +15,7 @@
         </button>
       </li>
       <li class="list-inline-item">
-        <button class="btn btn-primary">
+        <button (click)="toggleLike()" class="btn btn-primary">
           <i class="fa fa-heart"></i>
         </button>
       </li>
@@ -35,8 +35,10 @@
       <span>
         <i class="fa fa-user me-2"></i>
       </span>
-
       {{ member().knownAs }}, {{ member().age }}
+      @if (hasLiked()) {
+      <i class="fa fa-heart ms-2" style="color: red"></i>
+      }
     </h6>
     <p class="card-text text-muted text-center">{{ member().city }}</p>
   </div>
