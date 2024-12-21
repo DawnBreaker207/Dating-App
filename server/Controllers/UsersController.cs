@@ -12,7 +12,7 @@ namespace Server.Controllers;
 public class UsersController(IUserRepository userRepository, IMapper mapper, IPhotoService photoService) : BaseAPIController
 {
   [HttpGet]
-  public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
+  public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery] UserParams userParams)
   {
     userParams.CurrentUsername = User.GetUsername();
     var users = await userRepository.GetMembersAsync(userParams);
