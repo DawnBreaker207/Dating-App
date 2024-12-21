@@ -43,9 +43,9 @@ public class AccountController(UserManager<AppUser> userManager, ITokenService t
   {
 
     var user = await userManager.Users
-    .Include(p => p.Photos)
-    .FirstOrDefaultAsync(x =>
-        x.UserName == loginDto.Username.ToUpper());
+                .Include(p => p.Photos)
+                .FirstOrDefaultAsync(x =>
+                  x.NormalizedUserName == loginDto.Username.ToUpper());
 
     if (user == null || user.UserName == null) return Unauthorized("Invalid username");
 

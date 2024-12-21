@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using Microsoft.AspNetCore.Identity;
 
 namespace server.Entities;
