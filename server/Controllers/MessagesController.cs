@@ -16,10 +16,10 @@ public class MessagesController(IMessageRepository messageRepository, IUserRepos
   {
     var username = User.GetUsername();
 
-    if (username == createMessageDto.RecipientUserName.ToLower()) return BadRequest("You cannot message yourself");
+    if (username == createMessageDto.RecipientUsername.ToLower()) return BadRequest("You cannot message yourself");
 
     var sender = await userRepository.GetUserByUserNameAsync(username);
-    var recipient = await userRepository.GetUserByUserNameAsync(createMessageDto.RecipientUserName);
+    var recipient = await userRepository.GetUserByUserNameAsync(createMessageDto.RecipientUsername);
 
     if (recipient == null || sender == null) return BadRequest("Cannot send message at this time");
 
@@ -29,7 +29,7 @@ public class MessagesController(IMessageRepository messageRepository, IUserRepos
       Recipient = recipient,
       SenderUsername = sender.UserName,
       RecipientUsername = recipient.UserName,
-      Content = createMessageDto.Context
+      Content = createMessageDto.Content
     };
 
     messageRepository.AddMessage(message);
@@ -69,6 +69,7 @@ public class MessagesController(IMessageRepository messageRepository, IUserRepos
     if (message.SenderUsername != username && message.RecipientUsername != username) return Forbid();
 
     if (message.SenderUsername == username) message.SenderDeleted = true;
+
     if (message.RecipientUsername == username) message.RecipientDeleted = true;
 
     if (message is { SenderDeleted: true, RecipientDeleted: true })

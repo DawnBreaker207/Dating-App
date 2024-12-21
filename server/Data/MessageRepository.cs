@@ -42,7 +42,7 @@ public class MessageRepository(DataContext context, IMapper mapper) : IMessageRe
                   x.Sender.UserName == messageParams.Username &&
                   x.SenderDeleted == false),
       _ => query.Where(x =>
-                  x.Recipient.UserName == messageParams.Username ||
+                  x.Recipient.UserName == messageParams.Username &&
                   x.DateRead == null &&
                   x.RecipientDeleted == false)
     };

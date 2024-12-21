@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="cart-body">
+  <div class="card-body">
     @if (messages().length === 0) {
     <p>No messages yet</p>
     }@else {
@@ -9,9 +9,9 @@
         <div>
           <span class="chat-img float-end">
             <img
-              src="{{ message.recipientPhotoUrl || './assets/user.png' }}"
+              src="{{ message.senderPhotoUrl || './assets/user.png' }}"
               alt="Image of message sender"
-              class="rounder-circle"
+              class="rounded-circle"
             />
           </span>
           <div class="chat-body">
