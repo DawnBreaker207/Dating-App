@@ -14,7 +14,7 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, IPh
   [HttpGet]
   public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
   {
-    userParams.CurrentUsername = User.GetUserName();
+    userParams.CurrentUsername = User.GetUsername();
     var users = await userRepository.GetMembersAsync(userParams);
 
     Response.AddPaginationHeader(users);
@@ -37,7 +37,7 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, IPh
   [HttpPut]
   public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
   {
-    var user = await userRepository.GetUserByUserNameAsync(User.GetUserName());
+    var user = await userRepository.GetUserByUserNameAsync(User.GetUsername());
 
     if (user == null) return BadRequest("Could not find user");
 
@@ -50,7 +50,7 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, IPh
   [HttpPost("add-photo")]
   public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)
   {
-    var user = await userRepository.GetUserByUserNameAsync(User.GetUserName());
+    var user = await userRepository.GetUserByUserNameAsync(User.GetUsername());
 
     if (user == null) return BadRequest("Cannot update user");
 
@@ -77,7 +77,7 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, IPh
   [HttpPut("set-main-photo/{photoId:int}")]
   public async Task<ActionResult> SetMainPhoto(int photoId)
   {
-    var user = await userRepository.GetUserByUserNameAsync(User.GetUserName());
+    var user = await userRepository.GetUserByUserNameAsync(User.GetUsername());
 
     if (user == null) return BadRequest("Could not find user");
 
@@ -97,7 +97,7 @@ public class UsersController(IUserRepository userRepository, IMapper mapper, IPh
   [HttpDelete("delete-photo/{photoId}")]
   public async Task<ActionResult> DeletePhoto(int photoId)
   {
-    var user = await userRepository.GetUserByUserNameAsync(User.GetUserName());
+    var user = await userRepository.GetUserByUserNameAsync(User.GetUsername());
 
     if (user == null) return BadRequest("User not found");
 
