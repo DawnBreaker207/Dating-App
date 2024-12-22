@@ -105,8 +105,4 @@ public class MessageRepository(DataContext context, IMapper mapper) : IMessageRe
     context.Connections.Remove(connection);
   }
 
-  public async Task<bool> SaveAllAsync()
-  {
-    return await context.SaveChangesAsync() > 0;
-  }
 }
