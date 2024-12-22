@@ -43,18 +43,22 @@
     <tabset class="member-tabset" #memberTabs>
       <tab
         heading="Aboout {{ member.knownAs }}"
-        (selectTab)="onTabActive($event)"
+        (selectTab)="onTabActivated($event)"
       >
         <h4>Description</h4>
         <p>{{ member.introduction }}</p>
         <h4>Looking for</h4>
         <p>{{ member.lookingFor }}</p>
       </tab>
-      <tab heading="Interests" (selectTab)="onTabActive($event)">
+      <tab heading="Interests" (selectTab)="onTabActivated($event)">
         <h4>Description</h4>
         <p>{{ member.interests }}</p>
       </tab>
-      <tab heading="Photos" #photoTab="tab" (selectTab)="onTabActive($event)">
+      <tab
+        heading="Photos"
+        #photoTab="tab"
+        (selectTab)="onTabActivated($event)"
+      >
         @if (photoTab.active) {
         <gallery
           [items]="images"
@@ -63,7 +67,7 @@
         ></gallery>
         }
       </tab>
-      <tab heading="Messages" (selectTab)="onTabActive($event)">
+      <tab heading="Messages" (selectTab)="onTabActivated($event)">
         <app-member-messages [username]="member.userName" />
       </tab>
     </tabset>
