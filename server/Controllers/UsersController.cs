@@ -27,7 +27,9 @@ public class UsersController(IUnitOfWork unitOfWork, IMapper mapper, IPhotoServi
   [HttpGet("{username}")]
   public async Task<ActionResult<MemberDto>> GetUser(string username)
   {
-    var user = await unitOfWork.UserRepository.GetMemberAsync(username);
+    var currentUsername = User.GetUsername();
+    var user = await unitOfWork.UserRepository.GetMemberAsync(username,
+                  isCurrentUser: currentUsername == username);
 
     if (user == null) return NotFound();
 
