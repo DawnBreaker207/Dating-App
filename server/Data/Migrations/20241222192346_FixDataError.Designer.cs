@@ -11,8 +11,8 @@ using Server.Data;
 namespace server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241222182142_FixConflict")]
-    partial class FixConflict
+    [Migration("20241222192346_FixDataError")]
+    partial class FixDataError
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
