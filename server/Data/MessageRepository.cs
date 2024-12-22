@@ -92,10 +92,10 @@ public class MessageRepository(DataContext context, IMapper mapper) : IMessageRe
     var unreadMessages = messages
                   .Where(x => x.DateRead == null && x.RecipientUsername == currentUsername)
                   .ToList();
+
     if (unreadMessages.Count != 0)
     {
       unreadMessages.ForEach(x => x.DateRead = DateTime.UtcNow);
-      await context.SaveChangesAsync();
     }
     return messages;
   }

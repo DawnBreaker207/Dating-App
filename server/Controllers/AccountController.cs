@@ -1,12 +1,9 @@
-using System.Security.Cryptography;
-using System.Text;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using server.DTO;
 using server.Interfaces;
-using Server.Data;
 using Server.Entities;
 
 namespace server.Controllers;
