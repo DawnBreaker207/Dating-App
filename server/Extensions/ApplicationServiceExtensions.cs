@@ -3,6 +3,7 @@ using server.Data;
 using server.Helpers;
 using server.Interfaces;
 using server.Services;
+using server.SignalR;
 using Server.Data;
 
 namespace server.Extensions;
@@ -27,6 +28,7 @@ public static class ApplicationServiceExtensions
     services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
     services.AddSignalR();
+    services.AddSingleton<PresenceTracker>();
     return services;
   }
 }
