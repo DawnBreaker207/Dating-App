@@ -54,6 +54,15 @@ public class UserRepository(DataContext context, IMapper mapper) : IUserReposito
     return await context.Users.FindAsync(id);
   }
 
+  public async Task<AppUser?> GetUserByPhotoId(int photoId)
+  {
+    return await context.Users
+        .Include(p => p.Photos)
+        .IgnoreQueryFilters()
+        .Where(P => P.Photos.Any(P => P.Id == photoId))
+        .FirstOrDefaultAsync();
+  }
+
   public async Task<AppUser?> GetUserByUserNameAsync(string userName)
   {
     return await context.Users

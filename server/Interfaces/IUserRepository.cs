@@ -11,5 +11,6 @@ public interface IUserRepository
   Task<AppUser?> GetUserByUserNameAsync(string userName);
   Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams);
   Task<MemberDto?> GetMemberAsync(string user);
+  Task<AppUser?> GetUserByPhotoId(int photoId);
 
 }
