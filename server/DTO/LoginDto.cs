@@ -1,5 +1,3 @@
-using System;
-
 namespace server.DTO;
 
 public class LoginDto
