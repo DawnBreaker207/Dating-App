@@ -12,6 +12,11 @@ namespace server.Data;
 
 public class MessageRepository(DataContext context, IMapper mapper) : IMessageRepository
 {
+  public void AddGroup(Group group)
+  {
+    context.Group.Add(group);
+  }
+
   public void AddMessage(Message message)
   {
     context.Messages.Add(message);
@@ -22,9 +27,21 @@ public class MessageRepository(DataContext context, IMapper mapper) : IMessageRe
     context.Messages.Remove(message);
   }
 
+  public async Task<Connection?> GetConnection(string connectionId)
+  {
+    return await context.Connections.FindAsync(connectionId);
+  }
+
   public async Task<Message?> GetMessage(int id)
   {
     return await context.Messages.FindAsync(id);
+  }
+
+  public async Task<Group?> GetMessageGroup(string groupName)
+  {
+    return await context.Group
+              .Include(x => x.Connections)
+              .FirstOrDefaultAsync(x => x.Name == groupName);
   }
 
   public async Task<PagedList<MessageDto>> GetMessagesForUser(MessageParams messageParams)
@@ -74,6 +91,11 @@ public class MessageRepository(DataContext context, IMapper mapper) : IMessageRe
       await context.SaveChangesAsync();
     }
     return mapper.Map<IEnumerable<MessageDto>>(messages);
+  }
+
+  public void RemoveConnection(Connection connection)
+  {
+    context.Connections.Remove(connection);
   }
 
   public async Task<bool> SaveAllAsync()
