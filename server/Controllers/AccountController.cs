@@ -63,6 +63,6 @@ public class AccountController(UserManager<AppUser> userManager, ITokenService t
 
   private async Task<bool> UserExists(string username)
   {
-    return await userManager.Users.AnyAsync(x => x.NormalizedUserName == username.ToLower());
+    return await userManager.Users.AnyAsync(x => x.NormalizedUserName == username.ToUpper());
   }
 }
