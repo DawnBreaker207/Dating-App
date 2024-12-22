@@ -1,14 +1,14 @@
-import { Component, inject, OnInit, ViewChild, viewChild } from '@angular/core';
-import { MembersService } from '../../_services/members.service';
-import { ActivatedRoute } from '@angular/router';
-import { Member } from '../../_models/member';
-import { TabDirective, TabsetComponent, TabsModule } from 'ngx-bootstrap/tabs';
-import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
-import { TimeagoModule } from 'ngx-timeago';
 import { DatePipe } from '@angular/common';
-import { MemberMessagesComponent } from '../member-messages/member-messages.component';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { GalleryItem, GalleryModule, ImageItem } from 'ng-gallery';
+import { TabDirective, TabsetComponent, TabsModule } from 'ngx-bootstrap/tabs';
+import { TimeagoModule } from 'ngx-timeago';
+import { Member } from '../../_models/member';
 import { Message } from '../../_models/message';
+import { MembersService } from '../../_services/members.service';
 import { MessageService } from '../../_services/message.service';
+import { MemberMessagesComponent } from '../member-messages/member-messages.component';
 @Component({
   selector: 'app-member-detail',
   standalone: true,
