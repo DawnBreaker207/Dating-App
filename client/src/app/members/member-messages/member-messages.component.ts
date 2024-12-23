@@ -22,14 +22,16 @@ export class MemberMessagesComponent implements AfterContentChecked {
   messageService = inject(MessageService);
   username = input.required<string>();
   messageContent = '';
-
+  loading = false;
   sendMessage() {
+    this.loading = true;
     this.messageService
       .sendMessage(this.username(), this.messageContent)
       .then(() => {
         this.messageForm?.reset();
         this.scrollToBottom();
-      });
+      })
+      .finally(() => (this.loading = false));
   }
   // TODO: Understand this
   ngAfterContentChecked(): void {
