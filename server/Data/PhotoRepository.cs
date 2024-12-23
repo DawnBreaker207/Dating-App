@@ -11,7 +11,7 @@ public class PhotoRepository(DataContext context) : IPhotoRepository
   public async Task<Photo?> GetPhotoById(int id)
   {
     return await context.Photos
-                    .IgnoreAutoIncludes()
+                    .IgnoreQueryFilters()
                     .SingleOrDefaultAsync(x => x.Id == id);
   }
 

@@ -70,7 +70,7 @@ public class AdminController(
 
 
   [Authorize(Policy = "ModeratePhotoRole")]
-  [HttpGet("approve-photo/{photoId}")]
+  [HttpPost("approve-photo/{photoId}")]
   public async Task<ActionResult> ApprovePhoto(int photoId)
   {
     var photo = await unitOfWork.PhotoRepository.GetPhotoById(photoId);
@@ -91,7 +91,7 @@ public class AdminController(
   }
 
   [Authorize(Policy = "ModeratePhotoRole")]
-  [HttpGet("reject-photo/{photoId}")]
+  [HttpPost("reject-photo/{photoId}")]
   public async Task<ActionResult> RejectPhoto(int photoId)
   {
     var photo = await unitOfWork.PhotoRepository.GetPhotoById(photoId);
