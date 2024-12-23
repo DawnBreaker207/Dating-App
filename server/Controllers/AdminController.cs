@@ -13,7 +13,7 @@ public class AdminController(
                     IUnitOfWork unitOfWork,
                     IPhotoService photoService) : BaseAPIController
 {
-  [Authorize(Policy = "RequiredAdminRole")]
+  [Authorize(Policy = "RequireAdminRole")]
   [HttpGet("users-with-roles")]
   public async Task<ActionResult> GetUsersWithRoles()
   {

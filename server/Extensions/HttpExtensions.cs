@@ -14,7 +14,5 @@ public static class HttpExtensions
     response.Headers.Append("Pagination", JsonSerializer.Serialize(paginationHeader, jsonOptions));
     response.Headers.Append("Access-Control-Expose-Headers", "Pagination");
 
-  
-
   }
 }
